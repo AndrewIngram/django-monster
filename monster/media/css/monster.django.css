@@ -1,0 +1,146 @@
+.monster-edit {
+	position: absolute;
+	width: 88px;
+	height: 31px;
+	text-indent: -999em;
+	background: url(images/ui-edit.png) no-repeat;
+}
+
+#monster-toolbar {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 20px;
+	z-index: 99999;
+	padding: 10px 0;
+	background-color: #222;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.1, rgba(35,39,38,0.9)),
+	    color-stop(0.9, rgba(80,83,88,1.0))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgba(35,39,38,0.9) 10%,
+	    rgba(80,83,88,1.0) 90%
+	);		
+	border-bottom:  1px #ccc solid;
+}
+
+a.monster-button:link, a.monster-button:visited {
+	border: 1px #aaa solid;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	border-radius: 9px; 
+	color: #fff;
+	text-decoration: none;
+	padding: 3px 20px 3px 28px;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.75);
+	background-color: #505358;
+	font-weight: bold;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.1, rgb(35,39,38)),
+	    color-stop(0.9, rgb(80,83,88))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(35,39,38) 10%,
+	    rgb(80,83,88) 90%
+	);
+	text-shadow: rgba(0,0,0,1.0) 1px 1px 0;
+	position: relative;
+}
+
+.monster_toolbar_group {
+	margin-right: 10px;
+	float: left;
+	paddin-left: 1px;
+}
+
+.monster_toolbar_group a.monster-button {
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	padding: 4px 20px 4px;
+	line-height: 1;
+	float: left;
+	margin-left: -1px;
+}
+
+.monster_toolbar_group a.monster-button:first-child {
+	-moz-border-radius-topleft: 9px;
+	-moz-border-radius-bottomleft: 9px;
+	-webkit-border-top-left-radius: 9px;
+	-webkit-border-bottom-left-radius: 9px;
+	padding-left: 30px;
+}
+
+.monster_toolbar_group a.monster-button:last-child {
+	-moz-border-radius-topright: 9px;
+	-moz-border-radius-bottomright: 9px;
+	-webkit-border-top-right-radius: 9px;
+	-webkit-border-bottom-right-radius: 9px;
+	padding-right: 30px;
+}
+
+a.monster-button .ui-icon { position: absolute; left: 6px; top: 0; }
+
+a.monster-button:hover {
+	-moz-box-shadow: inset 0 0 4px #ccc;
+	-webkit-box-shadow: inset 0 0 4px #ccc;
+	text-decoration: none;
+}
+
+a.monster-button.primary {
+	border: 1px #fff solid;	
+	background-color: #6babf9;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+		color-stop(0.1, rgb(30,100,222)),
+    	color-stop(0.9, rgb(106,168,248))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+		rgb(30,100,222) 10%,
+    	rgb(106,168,248) 90%	
+	);
+	text-shadow: rgba(0,0,0,0.75) 1px 1px 0;
+}
+
+a.monster-button.primary:hover {
+	-moz-box-shadow: inset 0 0 4px #fff;
+	-webkit-box-shadow: inset 0 0 4px #fff;
+}
+
+a.monster-button.depressed {
+	background-color: #505358;
+	font-weight: bold;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0, rgb(77,84,68)),
+	    color-stop(1, rgb(15,15,15))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(77,84,68) 0%,
+	    rgb(15,15,15) 100%
+	);
+	color: #999;
+	text-decoratione: none;
+}
+
+a.monster-button.depressed:hover {
+	text-decoration: none;
+	-moz-box-shadow: inset 0 0 4px #000;
+	-webkit-box-shadow: inset 0 0 4px #000;	
+}
