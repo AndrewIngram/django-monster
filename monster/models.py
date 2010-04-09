@@ -4,7 +4,7 @@ from monster.fields import JSONField
 class RegionData(models.Model):
     key = models.CharField('Template Key',max_length=1000,db_index=True)
     template = models.TextField()
-    data = JSONField()
+    data = models.TextField()
     rendered = models.TextField()    
     
     class Meta:

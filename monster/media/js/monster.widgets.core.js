@@ -336,6 +336,47 @@ MONSTER.widgets.linkedline = function(spec, my){
 	return that;	
 }; 
 
+MONSTER.widgets.linkedheading = function(spec, my){
+	my = my || {};
+	var that = MONSTER.base.dialog_widget(spec, my);
+	
+	my.title = 'Linked Heading';
+	
+	var n = that.node;
+	
+	that.fields = {
+		text: MONSTER.fields.textfield({
+			verbose_name: 'Text',
+			callbacks: [
+				function(){ return n.find('a').html(); },
+				function(data) { n.find('a').html(data); }
+			],
+			data_name: 'text'
+		}),
+		href: MONSTER.fields.textfield({
+			verbose_name: 'Link URL',
+			callbacks: [
+				function(){ return n.find('a').attr('href'); },
+				function(data) { n.find('a').attr('href',data); }
+			],
+			data_name: 'href'	
+		}),
+		title : MONSTER.fields.textfield({
+			verbose_name: 'Link Title',
+			callbacks: [
+				function(){ return n.find('a').attr('title'); },
+				function(data){ n.find('a').attr('title',data); }
+			],
+			data_name: 'title'		
+		})
+	};
+	
+	that.init();
+	
+	return that;	
+};
+
+
 /** 
  * A widget for image links:
  *
@@ -459,7 +500,7 @@ MONSTER.widgets.markdown = function(spec,my){
 	});
 	
 	that.get_data = function(){
-		return that.node.html();
+		return spec.data;
 	};
 	that.render = function(){
 		return that.node.outerHTML();

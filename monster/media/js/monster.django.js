@@ -10,21 +10,24 @@
 			var group_spec = spec[i];
 			
 			for (var j=0;j<group_spec.length;j++) {
-				var button = $('<a href="#" class="monster-button"></a>');		
-				var button_spec = group_spec[j];
 				
-				button.text(button_spec.label);
-
-				if (button_spec.cssClass !== undefined) {
-					button.addClass(button_spec.cssClass);
-				}
-				
-				group.append(button);	
-				
-				button.click(function(ev){
-					button_spec.callback();
-					return false;
-				});		
+				(function(button_spec){
+					
+					var button = $('<a href="#" class="monster-button"></a>');		
+					
+					button.text(button_spec.label);
+	
+					if (button_spec.cssClass !== undefined) {
+						button.addClass(button_spec.cssClass);
+					}
+					
+					button.click(function(ev){
+						button_spec.callback();
+						return false;
+					});
+					group.append(button);
+				})(group_spec[j]);
+			
 			}
 			
 			container.append(group);
@@ -65,16 +68,38 @@
 		
 		that.save = function(){
 			that.render(function(html){
-				console.log(html);
+				var put_data = {
+					'data': $.toJSON(that.get_data()),
+					'rendered': html,
+					'template': spec.template
+				};
+				
+				$.ajax({
+				  type: 'PUT',
+				  url: spec.save_uri,
+				  data: put_data,
+				  dataType: 'text',
+				  success: function(data){
+					spec.node.html(html);
+					toolbar.add(placeholder).slideUp('fast').remove();
+					spec.edit_handler.fadeIn('fast');
+				  },
+				  error: function(request,status,error) {
+				  	// something went wrong
+				  }
+				});	
+				
 			});
 		};
 		
 		that.cancel = function(){
-			
+			spec.node.html(spec.revert_state);
+			toolbar.add(placeholder).slideUp('fast').remove();
+			spec.edit_handler.fadeIn('fast');
 		};
 		
 		that.reload = function(){
-			
+			console.log('pow');
 		};
 		
 		return that;
@@ -118,8 +143,9 @@
 					
 					var spec = {
 						'node': node,
-						'data': data.data || null,
-						'revert_state': node.html,
+						'data': (data.data) ? $.evalJSON(data.data) : null,
+						'revert_state': node.html(),
+						'template': data.template,
 						'save_uri': uri,
 						'edit_handler': handler 
 					};
