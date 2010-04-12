@@ -34,9 +34,10 @@ class RegionNode(Node):
         if request.user.is_staff:
             request.monster_enabled = True
             
+            reload_str = '<div style="display:none;" class="monster-reload" m:id="%s" m:key="%s">%s</div>' % (area.id, area.key, template)
             visible_str = '<div class="monster-region" m:id="%s" m:key="%s">%s</div>' % (area.id, area.key, area.rendered or area.template)
             
-            return visible_str
+            return '%s %s' % (reload_str, visible_str)
         else:
             return area.rendered or area.template
 

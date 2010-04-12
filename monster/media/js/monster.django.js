@@ -2,7 +2,7 @@
 	// We do all of this inside an anonymous closure to avoid polluting the global namespace
 
 	var build_toolbar_button = function(spec) {
-		var container = $('<div/>');
+		var container = $('<div class="monster_toolbar_buttons" />');
 		
 		for (var i=0;i<spec.length;i++) {
 			var group = $('<div class="monster_toolbar_group"></div>');
@@ -39,7 +39,7 @@
 	var region_editor = function(spec,my){
 		var that = MONSTER.editor(spec,my);
 		
-		var toolbar = $('<div id="monster-toolbar"><div id="monster-toolbar-inner"><div class="monster-toolbar-right"></div></div></div>');
+		var toolbar = $('<div id="monster-toolbar"></div>');
 		var placeholder = $('<div />');
 		
 		placeholder.hide();
@@ -99,7 +99,14 @@
 		};
 		
 		that.reload = function(){
-			console.log('pow');
+			spec.node.html(spec.reload_state);
+			spec.template = spec.reload_state;
+			spec.data = null;
+			
+			that.node.widgets().each(function(i){
+				that.editor_for_node($(this),null);
+			});
+		
 		};
 		
 		return that;
@@ -145,6 +152,7 @@
 						'node': node,
 						'data': (data.data) ? $.evalJSON(data.data) : null,
 						'revert_state': node.html(),
+						'reload_state': node.prev().html(),
 						'template': data.template,
 						'save_uri': uri,
 						'edit_handler': handler 
@@ -152,7 +160,7 @@
 					
 					node.html(data.template);
 			
-					var editor = region_editor(spec);				
+					region_editor(spec);				
 					
 				});
 			});

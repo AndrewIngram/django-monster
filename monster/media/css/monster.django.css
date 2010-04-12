@@ -13,7 +13,7 @@
 	top: 0;
 	height: 20px;
 	z-index: 99999;
-	padding: 10px 0;
+	padding: 10px;
 	background-color: #222;
 	background: -webkit-gradient(
 	    linear,
@@ -28,6 +28,7 @@
 	    rgba(80,83,88,1.0) 90%
 	);		
 	border-bottom:  1px #ccc solid;
+	text-align: right;
 }
 
 a.monster-button:link, a.monster-button:visited {
@@ -56,12 +57,16 @@ a.monster-button:link, a.monster-button:visited {
 	);
 	text-shadow: rgba(0,0,0,1.0) 1px 1px 0;
 	position: relative;
+	outline: 0;
+}
+
+.monster_toolbar_buttons {
+	float: right;
 }
 
 .monster_toolbar_group {
-	margin-right: 10px;
+	margin-left: 10px;
 	float: left;
-	paddin-left: 1px;
 }
 
 .monster_toolbar_group a.monster-button {
