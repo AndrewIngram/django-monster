@@ -5,5 +5,6 @@ from piston.resource import Resource
 region_resource = Resource(RegionAreaHandler)
 
 urlpatterns = patterns('',
+   url(r'^upload/$', 'monster.views.handle_upload'),                       
    url(r'^regions/(?P<id>\d+)/$', region_resource),
 )
