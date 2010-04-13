@@ -1,5 +1,54 @@
 (function($,config) {
 	// We do all of this inside an anonymous closure to avoid polluting the global namespace
+	
+	// Replace default imagefield with one that allows file uploadss, hacky but cool.
+	MONSTER.fields.imagefield = function(spec,my){
+	
+		var that = MONSTER.base.field(spec,my);
+		
+		that.prepare = function(){
+			var html = '<label for="dialog-field-' +that.data_name+ '">'+that.verbose_name+'</label><form><input type="file" name="dialog-field-'+that.data_name+'-file" id="dialog-field-'+that.data_name+'-file" /></form><br/><input name="dialog-field-'+that.data_name+'"></input><br/><img src="" width="200" />';
+			var data = that.get_value();
+			
+			that.field_node = $(html);
+			
+			var upload_uri = config.service_location + 'upload/';
+			var uploader = that.field_node.find('input#dialog-field-'+that.data_name+'-file');
+
+			uploader.change(function(e){
+				$.ajaxFileUpload({
+	                url: upload_uri,
+	                secureuri: false,
+	                fileElement: uploader,
+	                dataType: 'json',
+	                success: function (data, status) {
+						that.field_node.filter('input').val(data.filename);
+						that.field_node.filter('input').change();
+	                },
+	                error: function (data, status, e) {
+	                	// uh oh
+	                }
+	            });
+				
+				return false;
+			});	
+			
+
+			if (data) {
+				that.field_node.filter('input').val(data);
+				that.field_node.filter('img').attr('src',data);
+			}
+			
+			that.field_node.filter('input').change(function(e){
+				that.field_node.filter('img').attr('src',$(this).val());
+			});
+			
+			return that.field_node;
+		};	
+	
+		return that;
+	};	
+	
 
 	var build_toolbar_button = function(spec) {
 		var container = $('<div class="monster_toolbar_buttons" />');
