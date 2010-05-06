@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from .util.storages import DefaultStorage
 
 def handle_uploaded_file(storage,f,type):
-    
     return storage.save('monster/'+f.name,f)
 
 def handle_upload(request):

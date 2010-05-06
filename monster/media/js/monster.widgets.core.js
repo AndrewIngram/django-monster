@@ -219,7 +219,8 @@ MONSTER.base.dialog_widget = function(spec, my) {
 		for (var key in that.fields) {						
 			if (that.fields.hasOwnProperty(key)){
 				var field_node = that.fields[key].prepare();
-				var field_node_wrapped = $('<div class="dialog-field" />').append(field_node);		
+				var field_node_wrapped = $('<div class="dialog-field" />').append(field_node);
+				field_node_wrapped.append('<div class="monster-clear"/>');
 				container.append(field_node_wrapped);
 			}
 		}
@@ -273,16 +274,22 @@ MONSTER.base.dialog_widget = function(spec, my) {
 		
 		prepare(container);
 		
+		$('body').append(container);
+		
 		container.dialog({
 			title: that.get_title(),
 			modal: true,
+			width: 520,
+			height: 300,
 			buttons: { 
 				"Ok": function() {
 					that.write(container);
 					$(this).dialog("close");
+					container.remove();
 				},
 				"Cancel": function() {
 					$(this).dialog("close");
+					container.remove();
 				}
 			}
 		});
@@ -475,7 +482,7 @@ MONSTER.widgets.markdown = function(spec,my){
 		e.preventDefault();
 		e.stopPropagation();
 	
-		var container = $('<textarea />');
+		var container = $('<textarea class="dialog-textarea-full" />');
 		container.text(spec.data);
 		
 		container.dialog({

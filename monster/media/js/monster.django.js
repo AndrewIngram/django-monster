@@ -6,8 +6,13 @@
 	
 		var that = MONSTER.base.field(spec,my);
 		
+		// Returns a value from the field (and calls the second callback)
+		that.write = function(){
+			that.set_value(that.field_node.find('input[name=dialog-field-'+that.data_name+']').val());
+		};
+		
 		that.prepare = function(){
-			var html = '<label for="dialog-field-' +that.data_name+ '">'+that.verbose_name+'</label><form><input type="file" name="dialog-field-'+that.data_name+'-file" id="dialog-field-'+that.data_name+'-file" /></form><br/><input name="dialog-field-'+that.data_name+'"></input><br/><img src="" width="200" />';
+			var html = '<label for="dialog-field-' +that.data_name+ '">'+that.verbose_name+'</label><div><form><input type="file" name="dialog-field-'+that.data_name+'-file" id="dialog-field-'+that.data_name+'-file" /></form><br/><input name="dialog-field-'+that.data_name+'"></input><br/><img src="" style="margin-top: 8px; max-width: 359px;" /></div>';
 			var data = that.get_value();
 			
 			that.field_node = $(html);
@@ -22,8 +27,8 @@
 	                fileElement: uploader,
 	                dataType: 'json',
 	                success: function (data, status) {
-						that.field_node.filter('input').val(data.filename);
-						that.field_node.filter('input').change();
+						that.field_node.find('input[name=dialog-field-'+that.data_name+']').val(data.filename);
+						that.field_node.find('input[name=dialog-field-'+that.data_name+']').change();
 	                },
 	                error: function (data, status, e) {
 	                	// uh oh
@@ -35,12 +40,12 @@
 			
 
 			if (data) {
-				that.field_node.filter('input').val(data);
-				that.field_node.filter('img').attr('src',data);
+				that.field_node.find('input[name=dialog-field-'+that.data_name+']').val(data);
+				that.field_node.find('img').attr('src',data);
 			}
 			
-			that.field_node.filter('input').change(function(e){
-				that.field_node.filter('img').attr('src',$(this).val());
+			that.field_node.find('input[name=dialog-field-'+that.data_name+']').change(function(e){
+				that.field_node.find('img').attr('src',$(this).val());
 			});
 			
 			return that.field_node;

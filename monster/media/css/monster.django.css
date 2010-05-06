@@ -4,6 +4,15 @@
 	height: 31px;
 	text-indent: -999em;
 	background: url(images/ui-edit.png) no-repeat;
+	z-index: 99999;
+}
+
+.monster-edit:hover {
+	background-position: 0 -31px;
+}
+
+.monster-clear {
+	clear: left;
 }
 
 #monster-toolbar {
@@ -36,8 +45,8 @@ a.monster-button:link, a.monster-button:visited {
 	-moz-border-radius: 9px;
 	-webkit-border-radius: 9px;
 	border-radius: 9px; 
-	color: #fff;
-	text-decoration: none;
+	color: #fff !important;
+	text-decoration: none !important;
 	padding: 3px 20px 3px 28px;
 	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.75);
 	-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.75);
@@ -148,4 +157,51 @@ a.monster-button.depressed:hover {
 	text-decoration: none;
 	-moz-box-shadow: inset 0 0 4px #000;
 	-webkit-box-shadow: inset 0 0 4px #000;	
+}
+
+#monster-dialog-container .dialog-field {
+	padding: 10px;
+	border-bottom: 1px #404040 solid;	
+}
+
+#monster-dialog-container .dialog-field label {
+	margin: 4px 0 0 12px;
+	float: left;
+	text-align: right;
+	width: 100px;
+	font-weight: bold;
+	color: #eee;
+}
+
+#monster-dialog-container .dialog-field label + div {
+	float: left;
+}
+
+#monster-dialog-container .dialog-field input, #monster-dialog-container .dialog-field textarea {
+	background-color: #41515f;
+	padding: 4px 3px;
+	color: #fff;
+	border: none;
+}
+
+textarea.dialog-textarea-full {
+	width: 608px !important;
+	height: 446px !important;
+	padding: 16px !important;
+	background-color: #41515f !important;
+	padding: 4px 3px;
+	color: #fff;
+	border: none;	
+}
+
+#monster-dialog-container .dialog-field input, #monster-dialog-container .dialog-field textarea {
+	border: 1px #64717e solid;	
+	margin: 0 0 0 8px;
+	width: 352px;
+}
+
+#monster-dialog-container .dialog-field img, #monster-dialog-container .dialog-field .jcrop-holder {
+	margin: 0 0 0 9px;
+	float: left;
+	
 }

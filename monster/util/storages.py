@@ -7,7 +7,10 @@ try:
     from cStringIO import StringIO
 except ImportError:
     from StringIO import StringIO
-    
+
+"""
+This is all copied directly from Django so that we get our own version of DefaultStorage that's specific to monster
+"""    
 def get_storage_class(import_path=None):
     if import_path is None:
         import_path = settings.MONSTER_STORAGE
