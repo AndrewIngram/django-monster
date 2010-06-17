@@ -1,0 +1,8 @@
+.DS_Store
+*.pyc
+.project
+.pydevproject
+*.esproj
+*.egg-info
+*.tmp_*
+pip-log.txt
