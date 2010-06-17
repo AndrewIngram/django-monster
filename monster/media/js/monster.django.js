@@ -231,12 +231,14 @@
 		$(document).shortkeys({
 			'h': function()  {
 				$('.monster-edit').each(function() {
-					if ($(this).css('display') == 'none')
+					if ($(this).css('display') == 'none') {
 						$(this).css('display', 'block');
-					else
+					}
+					else {
 						$(this).css('display', 'none');
-				})
-			},
+					}
+				});
+			}
 		});
 		
 	});
