@@ -224,6 +224,17 @@
 	
 		reposition_absolutes();		
 		
+		$(document).shortkeys({
+			'h': function()  {
+				$('.monster-edit').each(function() {
+					if ($(this).css('display') == 'none')
+						$(this).css('display', 'block');
+					else
+						$(this).css('display', 'none');
+				})
+			},
+		});
+		
 	});
 
 })(jQuery,MONSTER_CONFIG);
