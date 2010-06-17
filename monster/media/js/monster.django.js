@@ -137,6 +137,7 @@
 					spec.node.html(html);
 					toolbar.add(placeholder).slideUp('fast').remove();
 					spec.edit_handler.fadeIn('fast');
+					$('.monster-icon monster-edit').show();
 				  },
 				  error: function(request,status,error) {
 				  	// something went wrong
@@ -150,6 +151,7 @@
 			spec.node.html(spec.revert_state);
 			toolbar.add(placeholder).slideUp('fast').remove();
 			spec.edit_handler.fadeIn('fast');
+			$('.monster-icon monster-edit').show();
 		};
 		
 		that.reload = function(){
@@ -195,6 +197,8 @@
 	
 			handler.click(function(){
 				var node = $(this).data('node');
+				
+				$('.monster-icon monster-edit').hide();
 				
 				var key = node.attr('m:key');
 				var id = node.attr('m:id');
