@@ -16,7 +16,6 @@ class TimelineRegionAreaHandler(BaseHandler):
 class TimelineRegionKeyHandler(BaseHandler):
     allowed_methods = ('GET',)
     fields = ('data','template','rendered','start_date','approved',)
-    model = TimelineRegion
     
     def read(self,id):
         obj = TimelineRegion.objects.get(id=id)
