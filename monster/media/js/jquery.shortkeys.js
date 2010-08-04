@@ -24,7 +24,11 @@ jQuery.fn.shortkeys = jQuery.fn.keys = function (obj, settings) {
 			quickArr.sort();
 			this.keys[i] = quickArr;
 		}
-	};	
+	};
+	this.disable = function (key)  {
+		delete obj[key];
+		delete this.keys[key];
+	};
 	this.convertToNumbers = function (inp) {
 		if (this.wackyKeys[inp] != undefined) {
 			return this.wackyKeys[inp];

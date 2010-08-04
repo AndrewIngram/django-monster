@@ -89,7 +89,22 @@
 		
 		return container;
 	};
-
+	
+	var addHideKey = function()  {
+		MONSTER.hidekey = $(document).shortkeys({
+			'h': function()  {
+				$('.monster-edit').each(function() {
+					if ($(this).css('display') == 'none') {
+						$(this).css('display', 'block');
+					}
+					else {
+						$(this).css('display', 'none');
+					}
+				});
+			}
+		});
+	};
+	
 	var region_editor = function(spec,my){
 		var that = MONSTER.editor(spec,my);
 		
@@ -138,6 +153,8 @@
 					toolbar.add(placeholder).slideUp('fast').remove();
 					spec.edit_handler.fadeIn('fast');
 					$('.monster-icon monster-edit').show();
+					addHideKey();
+					
 				  },
 				  error: function(request,status,error) {
 				  	// something went wrong
@@ -152,6 +169,8 @@
 			toolbar.add(placeholder).slideUp('fast').remove();
 			spec.edit_handler.fadeIn('fast');
 			$('.monster-icon monster-edit').show();
+			addHideKey();
+			
 		};
 		
 		that.reload = function(){
@@ -218,28 +237,22 @@
 					
 					node.html(data.template);
 			
-					region_editor(spec);				
+					region_editor(spec);
 					
 				});
+				
+				MONSTER.hidekey.disable('h');
 			});
 		});
 	
+	
+		addHideKey();
+		
 		$(window).bind('resize', reposition_absolutes);
 	
 		reposition_absolutes();		
 		
-		$(document).shortkeys({
-			'h': function()  {
-				$('.monster-edit').each(function() {
-					if ($(this).css('display') == 'none') {
-						$(this).css('display', 'block');
-					}
-					else {
-						$(this).css('display', 'none');
-					}
-				});
-			}
-		});
+		
 		
 	});
 
